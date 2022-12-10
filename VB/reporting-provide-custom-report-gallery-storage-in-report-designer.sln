@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReportGalleryWinForms", "reporting-provide-custom-report-gallery-storage-in-report-designer\ReportGalleryWinForms\ReportGalleryWinForms.vbproj", "{1E430351-72D4-4C2D-ADDF-02D997730718}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReportGalleryWinForms", "ReportGalleryWinForms\ReportGalleryWinForms.vbproj", "{1E430351-72D4-4C2D-ADDF-02D997730718}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReportGalleryWPF", "reporting-provide-custom-report-gallery-storage-in-report-designer\ReportGalleryWPF\ReportGalleryWPF.vbproj", "{342D7724-DE6C-4EFF-BDF7-61D038E1299C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReportGalleryWPF", "ReportGalleryWPF\ReportGalleryWPF.vbproj", "{342D7724-DE6C-4EFF-BDF7-61D038E1299C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "XpoReportGalleryStorage", "reporting-provide-custom-report-gallery-storage-in-report-designer\XpoReportGalleryStorage\XpoReportGalleryStorage.vbproj", "{A852A499-1E87-4F87-89C7-FC913C034615}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "XpoReportGalleryStorage", "XpoReportGalleryStorage\XpoReportGalleryStorage.vbproj", "{A852A499-1E87-4F87-89C7-FC913C034615}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AA9D5C80-20DB-4320-A3BC-F89658766853}
+		SolutionGuid = {01DFBEE8-91F3-42D1-B010-FDFDB3A0533F}
 	EndGlobalSection
 EndGlobal
