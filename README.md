@@ -31,6 +31,7 @@ Do the following to register the Report Gallery storage in your application:
     Call the static [ReportGalleryExtension.RegisterExtensionGlobal](https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.Extensions.ReportGalleryExtension.RegisterExtensionGlobal(DevExpress.XtraReports.Extensions.ReportGalleryExtension)) method and pass the storage instance as the parameter. This registers the storage in the application globally.
 
 * **WPF**
+  
     Create a storage instance and assign it to the Report Designer's [ReportGalleryOptions.Storage](https://docs.devexpress.com/WPF/DevExpress.Xpf.Reports.UserDesigner.ReportGalleryOptions.Storage) property.
 
 ## Files to Review
