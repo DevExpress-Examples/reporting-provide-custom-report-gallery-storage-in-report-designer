@@ -37,7 +37,7 @@ Do the following to register the Report Gallery storage in your application:
 
 ## Files to Review
 
-* [MainWindow.xaml.cs](CS/ReportGalleryWPF/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](CS/ReportGalleryWPF/MainWindow.xaml.vb))
+* [MainWindow.xaml.cs](CS/ReportGalleryWPF/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](VB/ReportGalleryWPF/MainWindow.xaml.vb))
 * [MainWindow.xaml](CS/ReportGalleryWPF/MainWindow.xaml) (VB: [MainWindow.xaml](VB/ReportGalleryWPF/MainWindow.xaml))
 * [Form1.cs](CS/ReportGalleryWinForms/Form1.cs) (VB: [Form1.vb](VB/ReportGalleryWinForms/Form1.vb))
 * [XpoReportGalleryStorageAdvanced.cs](CS/XpoReportGalleryStorage/XpoReportGalleryStorageAdvanced.cs) (VB: [XpoReportGalleryStorageAdvanced.vb](VB/XpoReportGalleryStorage/XpoReportGalleryStorageAdvanced.vb))
