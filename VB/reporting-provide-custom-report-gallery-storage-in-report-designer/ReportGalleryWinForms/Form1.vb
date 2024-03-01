@@ -1,12 +1,14 @@
-﻿Imports XpoReportGalleryStorage
+Imports XpoReportGalleryStorage
 Imports DevExpress.XtraReports.Extensions
 Imports System.Windows.Forms
 
 Namespace ReportGalleryWinForms
-    Partial Public Class Form1
+
+    Public Partial Class Form1
         Inherits Form
 
         Private xpoGalleryStorage As XpoReportGalleryStorageBase
+
         Public Sub New()
             InitializeComponent()
             xpoGalleryStorage = New XpoReportGalleryStorageSimple()

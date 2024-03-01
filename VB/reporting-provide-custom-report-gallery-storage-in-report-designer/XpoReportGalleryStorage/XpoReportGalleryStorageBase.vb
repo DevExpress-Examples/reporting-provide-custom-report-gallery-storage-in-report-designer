@@ -1,4 +1,4 @@
-﻿Imports DevExpress.Xpo
+Imports DevExpress.Xpo
 Imports DevExpress.Xpo.DB
 Imports DevExpress.Xpo.Metadata
 Imports DevExpress.XtraReports.Extensions
@@ -7,83 +7,67 @@ Imports System
 Imports System.IO
 
 Namespace XpoReportGalleryStorage
+
     Public MustInherit Class XpoReportGalleryStorageBase
-        Inherits ReportGalleryExtension
-        Implements IDisposable
+        Inherits DevExpress.XtraReports.Extensions.ReportGalleryExtension
+        Implements System.IDisposable
 
+        Private dataLayerField As DevExpress.Xpo.ThreadSafeDataLayer
 
-        Private dataLayer_Renamed As ThreadSafeDataLayer
+        Private disposableObjects As System.IDisposable()
 
-        Private disposableObjects() As IDisposable
-
-        Protected ReadOnly Property DataLayer() As ThreadSafeDataLayer
+        Protected ReadOnly Property DataLayer As ThreadSafeDataLayer
             Get
-                If dataLayer_Renamed IsNot Nothing Then
-                    Return dataLayer_Renamed
-                Else
-                    dataLayer_Renamed = CreateDataLayer()
-                    Return dataLayer_Renamed
-                End If
+                Return If(Me.dataLayerField, Function()
+                    Me.dataLayerField = Me.CreateDataLayer()
+                    Return Me.dataLayerField
+                End Function())
             End Get
         End Property
 
-        Protected Overridable ReadOnly Property ConnectionString() As String = AccessConnectionProvider.GetConnectionString(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\ReportGallery.mdb"))
+        Protected Overridable ReadOnly Property ConnectionString As String = DevExpress.Xpo.DB.AccessConnectionProvider.GetConnectionString(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Data\ReportGallery.mdb"))
 
         Private Function CreateDataLayer() As ThreadSafeDataLayer
-            Dim dictionary = PrepareDictionary()
-            Using updateDataLayer = XpoDefault.GetDataLayer(ConnectionString, dictionary, AutoCreateOption.DatabaseAndSchema)
-                updateDataLayer.UpdateSchema(False, dictionary.CollectClassInfos(GetType(ReportGalleryTable)))
-                Using unitOfWork = New UnitOfWork(updateDataLayer)
-                    unitOfWork.CreateObjectTypeRecords(GetType(ReportGalleryTable))
+            Dim dictionary = XpoReportGalleryStorage.XpoReportGalleryStorageBase.PrepareDictionary()
+            Using updateDataLayer = DevExpress.Xpo.XpoDefault.GetDataLayer(Me.ConnectionString, dictionary, DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema)
+                updateDataLayer.UpdateSchema(False, dictionary.CollectClassInfos(GetType(XpoReportGalleryStorage.ReportGalleryTable)))
+                Using unitOfWork = New DevExpress.Xpo.UnitOfWork(updateDataLayer)
+                    unitOfWork.CreateObjectTypeRecords(GetType(XpoReportGalleryStorage.ReportGalleryTable))
                 End Using
             End Using
-            Dim dataStore = XpoDefault.GetConnectionProvider(ConnectionString, AutoCreateOption.SchemaAlreadyExists, disposableObjects)
-            Return New ThreadSafeDataLayer(dictionary, dataStore)
+
+            Dim dataStore = DevExpress.Xpo.XpoDefault.GetConnectionProvider(Me.ConnectionString, DevExpress.Xpo.DB.AutoCreateOption.SchemaAlreadyExists, Me.disposableObjects)
+            Return New DevExpress.Xpo.ThreadSafeDataLayer(dictionary, dataStore)
         End Function
 
-        Public Sub Dispose() Implements IDisposable.Dispose
-            If dataLayer_Renamed IsNot Nothing Then
-                dataLayer_Renamed.Dispose()
-                dataLayer_Renamed = Nothing
+        Public Sub Dispose() Implements Global.System.IDisposable.Dispose
+            If Me.dataLayerField IsNot Nothing Then
+                Me.dataLayerField.Dispose()
+                Me.dataLayerField = Nothing
             End If
-            If disposableObjects IsNot Nothing Then
-                For Each obj In disposableObjects
+
+            If Me.disposableObjects IsNot Nothing Then
+                For Each obj In Me.disposableObjects
                     obj.Dispose()
-                Next obj
-                disposableObjects = Nothing
+                Next
+
+                Me.disposableObjects = Nothing
             End If
         End Sub
 
-        Protected Function MapFromTableRow(ByVal row As ReportGalleryTable) As GalleryItem
-            Dim galleryItem = New GalleryItem() With { _
-                .Content = row.Content, _
-                .ContentHash = row.ContentHash, _
-                .DisplayName = row.DisplayName, _
-                .ID = row.ID.ToString(), _
-                .ItemKind = row.ItemKind, _
-                .SID = row.SID, _
-                .ItemType = row.ItemType _
-            }
+        Protected Function MapFromTableRow(ByVal row As XpoReportGalleryStorage.ReportGalleryTable) As GalleryItem
+            Dim galleryItem = New DevExpress.XtraReports.ReportGallery.GalleryItem() With {.Content = row.Content, .ContentHash = row.ContentHash, .DisplayName = row.DisplayName, .ID = row.ID.ToString(), .ItemKind = row.ItemKind, .SID = row.SID, .ItemType = row.ItemType}
             Return galleryItem
         End Function
 
-        Protected Function MapFromGalleryItem(ByVal galleryItem As GalleryItem, ByVal session As Session) As ReportGalleryTable
-            Dim table = New ReportGalleryTable(session) With { _
-                .ID = Integer.Parse(galleryItem.ID), _
-                .SID = galleryItem.SID, _
-                .ItemKind = galleryItem.ItemKind, _
-                .DisplayName = galleryItem.DisplayName, _
-                .Content = galleryItem.Content, _
-                .Hash = galleryItem.GetHashCode(), _
-                .ContentHash = galleryItem.ContentHash, _
-                .ItemType = galleryItem.ItemType _
-            }
+        Protected Function MapFromGalleryItem(ByVal galleryItem As DevExpress.XtraReports.ReportGallery.GalleryItem, ByVal session As DevExpress.Xpo.Session) As ReportGalleryTable
+            Dim table = New XpoReportGalleryStorage.ReportGalleryTable(session) With {.ID = Integer.Parse(galleryItem.ID), .SID = galleryItem.SID, .ItemKind = galleryItem.ItemKind, .DisplayName = galleryItem.DisplayName, .Content = galleryItem.Content, .Hash = galleryItem.GetHashCode(), .ContentHash = galleryItem.ContentHash, .ItemType = galleryItem.ItemType}
             Return table
         End Function
 
         Private Shared Function PrepareDictionary() As XPDictionary
-            Dim dict = New ReflectionDictionary()
-            dict.GetDataStoreSchema(GetType(ReportGalleryTable))
+            Dim dict = New DevExpress.Xpo.Metadata.ReflectionDictionary()
+            dict.GetDataStoreSchema(GetType(XpoReportGalleryStorage.ReportGalleryTable))
             Return dict
         End Function
     End Class
