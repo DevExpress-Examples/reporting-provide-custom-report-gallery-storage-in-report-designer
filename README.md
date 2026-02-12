@@ -51,7 +51,7 @@ Do the following to register the Report Gallery storage in your application:
 * [Implement a Custom Report Gallery Storage (WinForms)](https://docs.devexpress.com/XtraReports/400823)
 * [Implement a Custom Report Gallery Storage (WPF)](https://docs.devexpress.com/XtraReports/400711#provide-custom-storage)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=reporting-provide-custom-report-gallery-storage-in-report-designer&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=reporting-provide-custom-report-gallery-storage-in-report-designer&~~~was_helpful=no)
 
